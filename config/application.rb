@@ -1,13 +1,28 @@
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'app'))
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "app"))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
-require 'boot'
+require "boot"
 
-Bundler.require :default, ENV['RACK_ENV']
+Bundler.require :default, ENV["RACK_ENV"]
+require "dotenv/load"
 
-Grape::ActiveRecord.configure_from_file!(File.expand_path('../database.yml', __FILE__))
+require "cab"
+require "api"
+require "concurrent"
+require "repositories/product_repository"
 
-Dir[File.expand_path('../../app/models/*.rb', __FILE__)].each { |file| require file }
-Dir[File.expand_path('../../app/resources/*.rb', __FILE__)].each { |file| require file }
+if ENV["ROLLBAR_TOKEN"]
+  Rollbar.configure do |config|
+    config.access_token = ENV["ROLLBAR_TOKEN"]
+  end
+end
 
-require 'api'
+$DATA = {
+  products: Concurrent::TVar.new([]),
+  line_items: Concurrent::TVar.new([]),
+  baskets: Concurrent::TVar.new([]),
+}
+
+Cab::Repositories::ProductRepository.seed

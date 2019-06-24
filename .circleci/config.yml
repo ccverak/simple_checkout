@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/cab
+    docker:
+      - image: circleci/ruby:2.6.3
+        environment:
+          RACK_ENV: test
+
+    steps:
+      - checkout
+
+      # Restore Cached Dependencies
+      - type: cache-restore
+        name: Restore bundle cache
+        key: cab_api-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Cache Dependencies
+      - type: cache-save
+        name: Store bundle cache
+        key: cab_api-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+      
+      # Run tests
+      - run: 
+          name: Run tests
+          command: bundle exec rspec spec

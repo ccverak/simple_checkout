@@ -1,5 +1,5 @@
-require File.expand_path('../config/environment', __FILE__)
+# frozen_string_literal: true
 
-use ActiveRecord::ConnectionAdapters::ConnectionManagement
+require File.expand_path("config/environment", __dir__)
 
 run Cab::API.new

@@ -1,10 +1,7 @@
 require:
   - rubocop-performance
-  - rubocop-rails
 AllCops:
   TargetRubyVersion: 2.6
-  Exclude:
-    - db/schema.rb
 
 Naming/AccessorMethodName:
   Description: Check the naming of accessor methods for get_/set_.
@@ -603,52 +600,3 @@ Performance/StringReplacement:
                   you are deleting characters.
   Reference: 'https://github.com/JuanitoFatas/fast-ruby#stringgsub-vs-stringtr-code'
   Enabled: false
-
-Rails/DynamicFindBy:
-  Enabled: true
-  AutoCorrect: false
-Rails/ActionFilter:
-  Description: 'Enforces consistent use of action filter methods.'
-  Enabled: false
-
-Rails/Date:
-  Description: >-
-                  Checks the correct usage of date aware methods,
-                  such as Date.today, Date.current etc.
-  Enabled: true
-
-Rails/FindBy:
-  Description: 'Prefer find_by over where.first.'
-  Enabled: true
-
-Rails/FindEach:
-  Description: 'Prefer all.find_each over all.find.'
-  Enabled: true
-
-Rails/HasAndBelongsToMany:
-  Description: 'Prefer has_many :through to has_and_belongs_to_many.'
-  Enabled: true
-
-Rails/Output:
-  Description: 'Checks for calls to puts, print, etc.'
-  Enabled: true
-
-Rails/ReadWriteAttribute:
-  Description: >-
-                 Checks for read_attribute(:attr) and
-                 write_attribute(:attr, val).
-  Enabled: true
-
-Rails/ScopeArgs:
-  Description: 'Checks the arguments of ActiveRecord scopes.'
-  Enabled: false
-
-Rails/TimeZone:
-  Description: 'Checks the correct usage of time zone aware methods.'
-  StyleGuide: 'https://github.com/bbatsov/rails-style-guide#time'
-  Reference: 'http://danilenko.org/2012/7/6/rails_timezones'
-  Enabled: true
-
-Rails/Validation:
-  Description: 'Use validates :attribute, hash of validations.'
-  Enabled: true

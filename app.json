@@ -1,0 +1,17 @@
+{
+  "name": "A simple checkout",
+  "description": "A simplified api for checkouts, written as production code",
+  "repository": "https://github.com/ccverak/simple_checkout",
+  "keywords": [
+    "ruby",
+    "json",
+    "rest",
+    "api"
+  ],
+  "env": {
+    "ROLLBAR_TOKEN": {
+      "description": "The rollbar token",
+      "generator": "secret"
+    }
+  }
+}

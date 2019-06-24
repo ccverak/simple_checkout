@@ -1,3 +1,5 @@
-ENV['RACK_ENV'] ||= 'test'
+# frozen_string_literal: true
 
-require File.expand_path('../application', __FILE__)
+ENV["RACK_ENV"] ||= "test"
+
+require File.expand_path("application", __dir__)
