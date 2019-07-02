@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-require "cab"
 require "securerandom"
-require "models/basket"
-require "repositories/product_repository"
-require "repositories/line_item_repository"
 
 module Cab
   module Repositories

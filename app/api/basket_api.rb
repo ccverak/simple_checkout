@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
-require "entities/basket"
-require "repositories/basket_repository"
-
-require "entities/product"
-
-module Cab
-  module Apis
+module CabWeb
+  module API
     class BasketAPI < Grape::API
       default_format :json
       format :json
@@ -56,20 +51,20 @@ module Cab
                             .fetch(:basket, {})
                             .fetch(:line_items, {})
 
-          basket = Repositories::BasketRepository.create(basket_params)
+          basket = Cab::Repositories::BasketRepository.create(basket_params)
           present basket, with: Entities::Basket::Response, status: :created
         end
 
         desc "Destroy a basket"
         delete ":id" do
-          Repositories::BasketRepository.destroy!(params[:id])
+          Cab::Repositories::BasketRepository.destroy!(params[:id])
 
           status :ok
         end
 
         desc "Retrieves a basket"
         get ":id" do
-          basket = Repositories::BasketRepository.find!(params[:id])
+          basket = Cab::Repositories::BasketRepository.find!(params[:id])
 
           status :ok
           present basket, with: Entities::Basket::Response
@@ -90,7 +85,7 @@ module Cab
           line_item_params = declared(params, include_missing: false)
                                .fetch(:line_item)
 
-          basket = Repositories::BasketRepository.add_line_item(basket_id, line_item_params)
+          basket = Cab::Repositories::BasketRepository.add_line_item(basket_id, line_item_params)
           present basket, with: Entities::Basket::Response
         end
       end

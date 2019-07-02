@@ -2,7 +2,6 @@
 
 require "securerandom"
 require "concurrent"
-require "models/product"
 
 module Cab
   module Repositories

@@ -4,7 +4,7 @@ describe "Pricing Rules Spec" do
   include Rack::Test::Methods
 
   def app
-    Cab::API
+    CabWeb::API::RootAPI
   end
 
   it "applies the pricing rules as intended" do

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require "entities/line_item"
-
-module Cab
+module CabWeb
   module Entities
     module Basket
       class Request < Grape::Entity

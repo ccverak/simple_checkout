@@ -4,7 +4,7 @@ describe "Basket APIs" do
   include Rack::Test::Methods
 
   def app
-    Cab::API
+    CabWeb::API::RootAPI
   end
 
   describe "POST /api/v1/basket" do

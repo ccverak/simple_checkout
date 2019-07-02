@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Cab
+module CabWeb
   module Entities
     module Product
       class Response < Grape::Entity

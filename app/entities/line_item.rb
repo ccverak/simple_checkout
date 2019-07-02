@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Cab
+module CabWeb
   module Entities
     class LineItem < Grape::Entity
       root "line_items", "line_item"

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "pricing_rules"
-
 module Cab
   module Models
     class Basket

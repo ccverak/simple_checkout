@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "app"))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require "boot"
@@ -9,9 +10,8 @@ Bundler.require :default, ENV["RACK_ENV"]
 require "dotenv/load"
 
 require "cab"
-require "api"
+require "cab_web"
 require "concurrent"
-require "repositories/product_repository"
 
 if ENV["ROLLBAR_TOKEN"]
   Rollbar.configure do |config|

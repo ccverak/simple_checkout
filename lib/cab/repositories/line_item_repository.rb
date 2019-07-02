@@ -2,7 +2,6 @@
 
 require "securerandom"
 require "concurrent"
-require "models/line_item"
 
 module Cab
   module Repositories

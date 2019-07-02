@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require "cab"
-
-module Cab
-  module Apis
+module CabWeb
+  module API
     class BaseAPI < Grape::API
       default_format :json
       format :json
