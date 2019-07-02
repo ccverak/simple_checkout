@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "api/defaults"
 require "api/base_api"
 require "api/basket_api"
 

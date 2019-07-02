@@ -3,15 +3,7 @@
 module CabWeb
   module API
     class BaseAPI < Grape::API
-      default_format :json
-      format :json
-      content_type :json, "application/json"
-
-      rescue_from :all do |e|
-        Rollbar.error(e)
-        BaseAPI.logger.error(e)
-        error!(message: "Internal server error", status: 500)
-      end
+      include Defaults
 
       desc "This is can act as a health endoint"
       get "/" do
