@@ -23,7 +23,7 @@ module CabClient
         instance_variable_set(:"@#{key}", options[key] || CabClient.send(key))
       end
 
-
+      @api_base ||= https://cab-api-prod.herokuapp.com/api/v1
       @timeout ||= DEFAULT_TIMEOUT
     end
 
