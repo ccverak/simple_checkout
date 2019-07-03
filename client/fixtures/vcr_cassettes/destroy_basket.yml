@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: delete
-    uri: https://cab-api-prod.herokuapp.com/api/v1/baskets/c0c32bc1-a459-4659-9219-162baa57b798
+    uri: https://cab-api-prod.herokuapp.com/api/v1/baskets/66b527c7-9da6-4ffd-92a4-4a81c3609560
     body:
       encoding: UTF-8
       string: "{}"
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Wed, 03 Jul 2019 09:28:04 GMT
+      - Wed, 03 Jul 2019 12:36:00 GMT
       Connection:
       - close
       Content-Type:
@@ -36,5 +36,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '200'
     http_version: 
-  recorded_at: Wed, 03 Jul 2019 09:28:05 GMT
+  recorded_at: Wed, 03 Jul 2019 12:36:00 GMT
 recorded_with: VCR 5.0.0

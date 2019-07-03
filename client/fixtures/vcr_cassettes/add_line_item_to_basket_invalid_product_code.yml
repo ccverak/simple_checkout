@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://cab-api-prod.herokuapp.com/api/v1//baskets/f926f942-1f04-4cf3-8e0a-08f3d86b99f7/line_items
+    uri: https://cab-api-prod.herokuapp.com/api/v1//baskets/07b10eb2-521b-4d4a-b82d-dcd9e72f1350/line_items
     body:
       encoding: UTF-8
       string: '{"line_item":{"product_code":"NON-EXISTNG-CODE","quantity":2}}'
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Wed, 03 Jul 2019 09:28:02 GMT
+      - Wed, 03 Jul 2019 12:36:01 GMT
       Connection:
       - close
       Content-Type:
@@ -36,5 +36,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"error":"Product not found: NON-EXISTNG-CODE"}'
     http_version: 
-  recorded_at: Wed, 03 Jul 2019 09:28:03 GMT
+  recorded_at: Wed, 03 Jul 2019 12:36:01 GMT
 recorded_with: VCR 5.0.0

@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Wed, 03 Jul 2019 09:28:02 GMT
+      - Wed, 03 Jul 2019 12:36:01 GMT
       Connection:
       - close
       Content-Type:
@@ -34,7 +34,7 @@ http_interactions:
       - 1.1 vegur
     body:
       encoding: ASCII-8BIT
-      string: '{"basket":{"id":"01816ea1-c8a3-40d4-93b8-1ec3709bc26b","line_items":[],"price":0,"final_price":0,"discounts":0}}'
+      string: '{"basket":{"id":"5328928b-a199-49e2-b768-fbb9fb05f0e9","line_items":[],"price":0,"final_price":0,"discounts":0}}'
     http_version: 
-  recorded_at: Wed, 03 Jul 2019 09:28:02 GMT
+  recorded_at: Wed, 03 Jul 2019 12:36:01 GMT
 recorded_with: VCR 5.0.0
