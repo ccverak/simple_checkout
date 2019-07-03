@@ -5,7 +5,7 @@ require "concurrent"
 
 module Cab
   module Repositories
-    class ProductRepository < AbstracRepository
+    class ProductRepository < AbstractRepository
       def self.table
         $DATA[:products]
       end

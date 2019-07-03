@@ -2,7 +2,7 @@
 
 module Cab
   module Repositories
-    class AbstracRepository
+    class AbstractRepository
       def self.table
         raise NotImplementedError
       end

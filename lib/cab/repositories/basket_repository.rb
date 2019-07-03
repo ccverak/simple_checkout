@@ -4,7 +4,7 @@ require "securerandom"
 
 module Cab
   module Repositories
-    class BasketRepository < AbstracRepository
+    class BasketRepository < AbstractRepository
       def self.table
         $DATA[:baskets]
       end
