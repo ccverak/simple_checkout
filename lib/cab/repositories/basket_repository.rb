@@ -4,13 +4,9 @@ require "securerandom"
 
 module Cab
   module Repositories
-    class BasketRepository
+    class BasketRepository < AbstracRepository
       def self.table
         $DATA[:baskets]
-      end
-
-      def self.all
-        table.value
       end
 
       def self.find(id)

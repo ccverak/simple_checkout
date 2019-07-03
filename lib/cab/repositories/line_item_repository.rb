@@ -5,13 +5,9 @@ require "concurrent"
 
 module Cab
   module Repositories
-    class LineItemRepository
+    class LineItemRepository < AbstracRepository
       def self.table
         $DATA[:line_items]
-      end
-
-      def self.all
-        table.value
       end
 
       def self.create(product:, quantity:)
