@@ -9,6 +9,11 @@ module CabWeb
           format :json
           content_type :json, "application/json"
 
+          logger.formatter = GrapeLogging::Formatters::Json.new
+          unless ENV["RACK_ENV"] == "test"
+            use GrapeLogging::Middleware::RequestLogger, logger: logger
+          end
+
           rescue_from Grape::Exceptions::ValidationErrors do |e|
             logger.error(e) unless ENV["RACK_ENV"] == "test"
 
@@ -37,7 +42,7 @@ module CabWeb
             end
 
             def logger
-              base.logger
+              RootAPI.logger
             end
           end
         end

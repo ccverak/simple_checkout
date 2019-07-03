@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "grape_logging"
 require "api/defaults"
 require "api/base_api"
 require "api/basket_api"
