@@ -43,16 +43,15 @@ module CabClient
 
     def handle_errors
       yield.tap do |response|
-        pp
         if response.status.request_timeout?
           raise APINotAvailable, "The request timed out, please try again"
         elsif response.status.server_error?
           raise ServerError, "Something seems odd in the server side, please try again later"
         elsif response.status.not_found?
-          raise NotFoundError, "Resource not found"
+          raise NotFoundError, response.body.to_s
         elsif response.status.client_error?
           raise IncompatibleClientError, "Seems you are using an old client, please update to the latest version"\
-                                         "Base error: #{response.body.to_s}"
+                                         "Upstream error: #{response.body.to_s}"
         end
       end
     end
