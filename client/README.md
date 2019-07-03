@@ -121,4 +121,4 @@ client.add_to_basket(basket_id: existing_id, attributes: {
 
 ## Open Api definition
 
-Checkout the Open Api definition (v2) at: `https://cab-api-prod.herokuapp.com/api/v1/docs`
+Checkout the Open Api definition (v2) at: [https://cab-api-prod.herokuapp.com/api/v1/docs](https://cab-api-prod.herokuapp.com/api/v1/docs)

@@ -60,7 +60,7 @@ Checkout here a running version: [https://cab-api-prod.herokuapp.com/](https://c
 
 ## API docs
 
-Checkout the Open Api definition (v2) at: `https://cab-api-prod.herokuapp.com/api/v1/docs`
+Checkout the Open Api definition (v2) at: [https://cab-api-prod.herokuapp.com/api/v1/docs](https://cab-api-prod.herokuapp.com/api/v1/docs)
 
 ## Clients
 
