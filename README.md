@@ -16,7 +16,7 @@ The active pricing rules are configured in `app/pricing_rules.rb` in the `active
 
 ### Available rules
 
-- **free_items_on_batch**: This rule allows you to define discounts over a basket by reducing in a 100% the price of a number of items of a product for every batch of items of the product found in the basket.
+- `FreeItemsInBatchRule`: This rule allows you to define discounts over a basket by reducing in a 100% the price of a number of items of a product for every batch of items of the product found in the basket.
 
 Example:
 
@@ -25,17 +25,18 @@ Example:
 should be declared as follows:
 
 ```ruby
-{ type: :free_items_on_batch, product_code: "VOUCHER", batch_size: 4, free_per_batch: 2 }
+FreeItemInBatch.new product_code: "VOUCHER", batch_size: 4, free_per_batch: 2
 ```
 
-- **two_for_one**: This rule is a shortcut for the most common free_items_on_batch, "2 for the price of 1"
+- `TwoForOneRule`: This rule is a shortcut for the most common `FreeItemsInBatchRule`, "2 for the price of 1"
 
 I should be declared like this:
 
 ```ruby
-{ type: :two_for_one, product_code: "VOUCHER" }
+TwoForOneRule.new product_code: "VOUCHER"
 ```
-- **bulk**: This rules allows you to define a discount per item of a product where the number of items of that product is greater or exceeds a given number.
+
+- `BulkRule`: This rules allows you to define a discount per item of a product where the number of items of that product is greater or exceeds a given number.
 
 Example:
 
@@ -44,17 +45,27 @@ Apply a discount of 1 euro for every item in the basket if the item is present m
 This rule should be represented like this:
 
 ```ruby
-{ type: :bulk, product_code: "TSHIRT", minimum_items: 5, discount_per_item: 100 }
+BulkRule.new product_code: "TSHIRT", minimum_items: 5, discount_per_item: 100
 ```
 
 
 ### Adding custom rules
 
-In order to add a custom rule a new entry should be added to `active_rules` in `app/pricing_rules.rb`. Also, the new rule should be registered in the RuleFactory and its class should follow the following contract:
+In order to add a custom rule a new entry should be added to `active_rules`.
+The new rule should should follow the following contract defined in `pricing_rules/abstract_rule.rb`
+
 
 ```ruby
 def apply(basket: Basket) -> discount: Integer
 ```
+
+## Concurrency support
+
+We have a global variable which plays a the database, this shared variable uses a lock from `concurrent_ruby` to avoid racing conditions when multiple threads try to read/write this variable.
+
+Puma is configured to only use threads and not workers. Workers won't work well with the shared in-memory database but threads will. 
+
+Due to all the above, this app only supports vertical scalability by increasing the power to the server and/or adding more threads to the puma configuration using the MAX_THREADS environment variable.
 
 ## Deployment
 
