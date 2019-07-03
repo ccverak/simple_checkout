@@ -25,7 +25,7 @@ Example:
 should be declared as follows:
 
 ```ruby
-FreeItemInBatch.new product_code: "VOUCHER", batch_size: 4, free_per_batch: 2
+FreeItemsInBatchRule.new product_code: "VOUCHER", batch_size: 4, free_per_batch: 2
 ```
 
 - `TwoForOneRule`: This rule is a shortcut for the most common `FreeItemsInBatchRule`, "2 for the price of 1"
