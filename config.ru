@@ -2,4 +2,4 @@
 
 require File.expand_path("config/environment", __dir__)
 
-run Cab::API::RootAPI.new
+run CabWeb::API::RootAPI.new

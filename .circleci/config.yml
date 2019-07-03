@@ -9,6 +9,9 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: Install bundler 2.0.2
+          command: gem install bundler
 
       # Restore Cached Dependencies
       - type: cache-restore
@@ -27,5 +30,10 @@ jobs:
       
       # Run tests
       - run: 
-          name: Run tests
+          name: Run server tests
           command: bundle exec rspec spec
+
+      # Run tests
+      - run: 
+          name: Run client tests
+          command: cd client && bundle install && bundle exec rspec spec

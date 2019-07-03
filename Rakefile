@@ -24,14 +24,8 @@ task :environment do
   require File.expand_path("config/environment", __dir__)
 end
 
-namespace :db do
-  task :environment do
-    require File.expand_path("config/environment", __dir__)
-  end
-end
-
 task routes: :environment do
-  Cab::API.routes.each do |route|
+  CabWeb::RootAPI.routes.each do |route|
     method = route.request_method.ljust(10)
     path   = route.path
     puts "     #{method} #{path}"
