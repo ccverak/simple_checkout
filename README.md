@@ -1,6 +1,8 @@
-# Cab project (server side) 
+# Cab project
 
 [![CircleCI](https://circleci.com/gh/ccverak/simple_checkout/tree/master.svg?style=svg)](https://circleci.com/gh/ccverak/simple_checkout/tree/master)
+
+## Server documentation
 
 ## Currency representation
 
