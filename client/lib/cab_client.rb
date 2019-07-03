@@ -6,6 +6,8 @@ require "cab_client/version"
 module CabClient
   class Error < StandardError; end
   extend Configurable
+
+  
 end
 
 require "cab_client/client"

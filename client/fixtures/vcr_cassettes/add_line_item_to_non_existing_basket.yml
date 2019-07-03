@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://cab-api-prod.herokuapp.com/api/v1//baskets/non-existing-id/line_items
+    body:
+      encoding: UTF-8
+      string: '{"line_item":{"product_code":"VOUCHER","quantity":2}}'
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=UTF-8
+      Host:
+      - cab-api-prod.herokuapp.com
+      User-Agent:
+      - http.rb/4.1.1
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Wed, 03 Jul 2019 09:28:02 GMT
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '45'
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: '{"error":"Basket not found: non-existing-id"}'
+    http_version: 
+  recorded_at: Wed, 03 Jul 2019 09:28:03 GMT
+recorded_with: VCR 5.0.0

@@ -15,13 +15,14 @@ module CabClient
     class IncompatibleClientError < StandardError; end
     class TimeoutError < StandardError; end
 
-    DEFAULT_TIMEOUT = 10
+    DEFAULT_TIMEOUT = 300
     attr_reader(*Configurable::OPTIONS)
 
     def initialize(options = {})
       Configurable::OPTIONS.each do |key|
         instance_variable_set(:"@#{key}", options[key] || CabClient.send(key))
       end
+
 
       @timeout ||= DEFAULT_TIMEOUT
     end
@@ -33,7 +34,7 @@ module CabClient
     end
 
     def perform_request(method, path, params = {})
-      url = "#{base_api}/#{path}"
+      url = "#{api_base}/#{path}"
 
       handle_errors do
         Response.new(http_client.send(method, url, json: params))
@@ -42,14 +43,16 @@ module CabClient
 
     def handle_errors
       yield.tap do |response|
+        pp
         if response.status.request_timeout?
           raise CarNotAvailable, "The request timed out, please try again"
-        elsif response.status.client_error?
-          raise IncompatibleClientError, "Seems you are using an old client, please update to the latest version"
         elsif response.status.server_error?
           raise ServerError, "Something seems odd in the server side, please try again later"
         elsif response.status.not_found?
-          raise NotFound, "Resource not found"
+          raise NotFoundError, "Resource not found"
+        elsif response.status.client_error?
+          raise IncompatibleClientError, "Seems you are using an old client, please update to the latest version"\
+                                         "Base error: #{response.body.to_s}"
         end
       end
     end

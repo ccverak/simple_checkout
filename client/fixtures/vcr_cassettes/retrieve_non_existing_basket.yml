@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cab-api-prod.herokuapp.com/api/v1/baskets/non-existing
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=UTF-8
+      Host:
+      - cab-api-prod.herokuapp.com
+      User-Agent:
+      - http.rb/4.1.1
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Wed, 03 Jul 2019 09:28:04 GMT
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '42'
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: '{"error":"Basket not found: non-existing"}'
+    http_version: 
+  recorded_at: Wed, 03 Jul 2019 09:28:04 GMT
+recorded_with: VCR 5.0.0

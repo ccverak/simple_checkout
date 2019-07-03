@@ -3,7 +3,7 @@
 module CabClient
   class Client
     module Baskets
-      def create_basket(attributes)
+      def create_basket(attributes={})
         perform_request(:post, "baskets", attributes)
       end
 
