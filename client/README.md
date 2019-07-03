@@ -1,8 +1,6 @@
 # CabClient
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cab_client`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is the client of the Cab Rest API
 
 ## Installation
 
@@ -22,22 +20,101 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Configure the client:
 
-## Development
+```ruby
+CabClient.configure do |config|
+    config.api_base = 'https://cab-api-prod.herokuapp.com/api/v1/'
+    config.timeout = 30
+end
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Parameters
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+`api_base`: Use it in case you want to deploy your own copy of the api, defaults to: https://cab-api-prod.herokuapp.com/api/v1
 
-## Contributing
+`timeout`: Sets the request timeout in seconds, defaults to 10 seconds
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/cab_client. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+### Examples
 
-## License
+Start by creating a client
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+```ruby
+CabClient::Client.new
+```
 
-## Code of Conduct
+Creating an empty basket:
 
-Everyone interacting in the CabClient project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/cab_client/blob/master/CODE_OF_CONDUCT.md).
+```ruby
+client.create_basket
+```
+```json
+{
+    "basket":{
+        "id":"c0c32bc1-a459-4659-9219-162baa57b798",
+        "line_items":[],
+        "price":0,
+        "final_price":0,
+        "discounts":0
+    }
+}
+```
+
+Creating a basket passing some line items:
+
+```ruby
+client.create_basket(
+    basket: {
+        line_items: [
+            product_code: "VOUCHER",
+            quantity: 2,
+        ],
+    },
+)
+```
+
+```json
+{
+    "basket":{
+        "id":"2c4d983a-ac58-4fd3-8ec0-979f59fc69ff",
+        "line_items":[{"product_code":"VOUCHER","quantity":2}],
+        "price":1000,
+        "final_price":500,
+        "discounts":500
+    }
+}
+```
+
+Retrieving an existing basket:
+
+```ruby
+client.retrieve_basket(basket_id: existing_id)
+```
+
+
+Destroying an existing basket:
+
+```ruby
+client.destroy_basket(basket_id: existing_id)
+```
+
+Adding a line item to a basket:
+
+```ruby
+client.add_to_basket(basket_id: existing_id, attributes: {
+                                                line_item: {
+                                                product_code: "VOUCHER",
+                                                quantity: 2,
+                                                },
+                                            })
+```
+
+### Errors
+
+- `CabClient::Client::APINotAvailable`: Raised when there was a timeout or the API didn't respond on time
+
+- `CabClient::Client::ServerError`: Raise when something went wrong in the server side
+
+- `CabClient::Client::NotFoundError`: Raise when certain resource you are querying for doesn't exist.
+
+- `CabClient::Client::IncompatibleClientError`: Raise when there was something wrong with the request body, typically this means you are using and old client.

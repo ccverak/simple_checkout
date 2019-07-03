@@ -15,7 +15,7 @@ module CabClient
     class IncompatibleClientError < StandardError; end
     class TimeoutError < StandardError; end
 
-    DEFAULT_TIMEOUT = 300
+    DEFAULT_TIMEOUT = 10
     attr_reader(*Configurable::OPTIONS)
 
     def initialize(options = {})
@@ -45,7 +45,7 @@ module CabClient
       yield.tap do |response|
         pp
         if response.status.request_timeout?
-          raise CarNotAvailable, "The request timed out, please try again"
+          raise APINotAvailable, "The request timed out, please try again"
         elsif response.status.server_error?
           raise ServerError, "Something seems odd in the server side, please try again later"
         elsif response.status.not_found?
