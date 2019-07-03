@@ -118,3 +118,7 @@ client.add_to_basket(basket_id: existing_id, attributes: {
 - `CabClient::Client::NotFoundError`: Raise when certain resource you are querying for doesn't exist.
 
 - `CabClient::Client::IncompatibleClientError`: Raise when there was something wrong with the request body, typically this means you are using and old client.
+
+## Open Api definition
+
+Checkout the Open Api definition (v2) at: `https://cab-api-prod.herokuapp.com/api/v1/docs`
