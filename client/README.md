@@ -113,11 +113,11 @@ client.add_to_basket(basket_id: existing_id, attributes: {
 
 - `CabClient::Client::APINotAvailable`: Raised when there was a timeout or the API didn't respond on time
 
-- `CabClient::Client::ServerError`: Raise when something went wrong in the server side
+- `CabClient::Client::ServerError`: Raised when something went wrong in the server side
 
-- `CabClient::Client::NotFoundError`: Raise when certain resource you are querying for doesn't exist.
+- `CabClient::Client::NotFoundError`: Raised when certain resource you are querying for doesn't exist.
 
-- `CabClient::Client::IncompatibleClientError`: Raise when there was something wrong with the request body, typically this means you are using and old client.
+- `CabClient::Client::IncompatibleClientError`: Raised when there was something wrong with the request body, typically this means you are using an old client.
 
 ## Open Api definition
 
