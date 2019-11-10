@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name          = "cab_client"
   spec.version       = CabClient::VERSION
   spec.authors       = ["Carlos Castellanos Vera"]
-  spec.email         = ["ccverak@gmail.com"]
+  spec.email         = ["me@carloscastellanosvera.com"]
 
   spec.summary       = "The client of the Cab API"
   spec.description   = "The ruby client of the Cab API"
