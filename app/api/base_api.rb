@@ -5,7 +5,7 @@ module CabWeb
     class BaseAPI < Grape::API
       include Defaults
 
-      desc "This is can act as a health endoint"
+      desc "This can act as a health endoint"
       get "/" do
         status :ok
         { version: Cab::VERSION }
